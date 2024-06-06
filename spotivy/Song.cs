@@ -13,11 +13,11 @@ namespace spotivy
 
         }
         private Genre _genre;
-        private int _lengt; //length in ticks 1 sec = 5 ticks
+        private int _length; //length in ticks 1 sec = 5 ticks
         private List<Artist> _artistList;
         
 
-        private string _titel;
+        private string _title;
 
     }
 }
