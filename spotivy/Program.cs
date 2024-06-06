@@ -2,9 +2,14 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            List<User> users = new List<User>();
+            List<Album> albums = new List<Album>();
+            List<Artist> artists = new List<Artist>();
+            List<Song> songs = new List<Song>();
+
+            SongCollection currentPlay;
         }
     }
 }
