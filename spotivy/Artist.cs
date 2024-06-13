@@ -9,7 +9,12 @@ namespace spotivy
     internal class Artist
     {
         private string _userName;
+        public string UserName { get { return _userName; } }
         private List<Song> _songList;
         private List<Album> albumList;
+
+        public Artist() { 
+
+        }
     }
 }
