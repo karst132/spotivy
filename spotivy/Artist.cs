@@ -11,7 +11,10 @@ namespace spotivy
         private string _userName;
         public string UserName { get { return _userName; } }
         private List<Song> _songList;
-        private List<Album> albumList;
+        public List<Song> SongList { get { return _songList; } }
+
+        private List<Album> _albumList;
+        public List<Album> AlbumList { get { return _albumList; } }
 
         public Artist() { 
 
