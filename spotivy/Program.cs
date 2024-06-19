@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using static spotivy.Song;
 
 namespace spotivy
 {
@@ -13,7 +14,7 @@ namespace spotivy
 
 
         static async Task Main(string[] args) 
-        { 
+        {
             Console.WriteLine("start");
             Program program = new Program();
             await program.Run();

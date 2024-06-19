@@ -10,9 +10,25 @@ namespace spotivy
     {
         public enum Genre
         {
-
+            Unknown = -1,
+            Classical,
+            Popular,
+            Blues,
+            Country,
+            EasyListening,
+            Electronic,
+            Folk,
+            HipHop,
+            Jazz,
+            Pop,
+            RAndBOrSoul,
+            Rock,
+            Metal,
+            Punk
         }
-        private Genre _genre;
+        private List<Genre> _genres;
+        public List<Genre> Genres { get { return _genres; } }
+
       
         private int _length; //length in ticks 1 sec = 5 ticks
         public int Length { get { return _length; } }
@@ -23,11 +39,12 @@ namespace spotivy
         private string _titel;
         public string Titel { get { return _titel; } }
 
-        public Song(int length, string titel = "", List<Artist> artistList = null)
+        public Song(int length, string titel = "", List<Artist> artistList = null, List<Genre> genres = null)
         {
             _length = length;
             _titel = titel;
             _artistList = artistList ?? new List<Artist>();
+            _genres = genres ?? new List<Genre>();
         }
     }
 }
