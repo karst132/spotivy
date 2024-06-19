@@ -4,32 +4,56 @@ namespace spotivy
 {
     internal class Program
     {
-        static void Main(string[] args)
+        List<User> users = new List<User>();
+        List<Album> albums = new List<Album>();
+        List<Artist> artists = new List<Artist>();
+        List<Song> songs = new List<Song>();
+
+        Active currentPlay;
+
+
+        static async Task Main(string[] args) 
+        { 
+            
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("start");
+            Program program = new Program();
+            await program.Run();
+            Console.WriteLine("end");
+        }
+
+        async Task Run()
         {
-            List<User> users = [new User("Lily"), new User("Adam"), new User("Ph1l"), new User("Steve")];
-            User mainUser = new User("MainUser");
-            List<Album> albums = new List<Album>();
-            List<Artist> artists = new List<Artist>();
-            List<Song> songs = new List<Song>();
+            List<Song> tempSongs = [new Song(50,"song1"),new Song(40,"song2")];//for tessting purposes
 
-            SongCollection currentPlay;
+            currentPlay = new Active();
+            currentPlay.SetSongList(tempSongs);
 
-            mainUser.ViewFriendsList();
-            users[0].ViewFriendsList();
+            Thread t1 = new Thread(Method1)
+            {
+                Name = "Thread1"
+            };
+            Thread t2 = new Thread(Method2)
+            {
+                Name = "Thread2"
+            };
+            t1.Start();
+            t2.Start();
+            while (t1.IsAlive || t2.IsAlive)
+            {
 
-            mainUser.AddFriend(users[0]);
+            }
+        }
 
-            Thread.Sleep(200);
+        void Method1()
+        {
+            currentPlay.Play();
+        }
+        void Method2()
+        {
+            Thread.Sleep(3000);
 
-            mainUser.ViewFriendsList();
-            users[0].ViewFriendsList();
-
-            mainUser.RemoveFriend(users[0]);
-
-            Thread.Sleep(200);
-
-            mainUser.ViewFriendsList();
-            users[0].ViewFriendsList();
+            //currentPlay.Stop();
         }
     }
 }
