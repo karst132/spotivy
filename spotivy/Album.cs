@@ -9,5 +9,10 @@ namespace spotivy
     internal class Album : SongCollection
     {
         private Artist _artist;
+
+        public Album()
+        {
+
+        }
     }
 }
