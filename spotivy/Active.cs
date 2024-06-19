@@ -26,7 +26,7 @@ namespace spotivy
                     {
                         line += (_songList[playingSong].ArtistList[j].UserName + " | ");
                     }
-                    line += (_songList[playingSong].Length/5+"/"+i/5);
+                    line += i/5+"/"+(_songList[playingSong].Length/5);
                     Write(line);
                     Thread.Sleep( 200 );
                 }
