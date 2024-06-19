@@ -8,8 +8,6 @@ namespace spotivy
 {
     internal class User
     {
-        //private List<Playlist> _playlistList; //list of all playlists
-        //public List<Playlist> PlaylistList { get { return _playlistList; } }
         private List<User> _friendList = new List<User>();
         private string _name;
         public string Name { get { return _name; } }

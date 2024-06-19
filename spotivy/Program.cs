@@ -14,8 +14,6 @@ namespace spotivy
 
         static async Task Main(string[] args) 
         { 
-            
-            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("start");
             Program program = new Program();
             await program.Run();
