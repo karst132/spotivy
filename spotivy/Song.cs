@@ -13,12 +13,13 @@ namespace spotivy
 
         }
         private Genre _genre;
+      
         private int _length; //length in ticks 1 sec = 5 ticks
         public int Length { get { return _length; } }
 
         private List<Artist> _artistList;
         public List<Artist> ArtistList { get { return _artistList; } }
-        
+
         private string _titel;
         public string Titel { get { return _titel; } }
 
@@ -28,6 +29,5 @@ namespace spotivy
             _titel = titel;
             _artistList = artistList ?? new List<Artist>();
         }
-
     }
 }

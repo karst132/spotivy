@@ -8,7 +8,7 @@ namespace spotivy
 {
     internal class User
     {
-        private List<Playlist> _playlistList; //list of playlists
+        private List<Playlist> _playlistList; //list of all playlists
         public List<Playlist> PlaylistList { get { return _playlistList; } }
         private List<User> _friendList;
         private string _name;
@@ -33,7 +33,7 @@ namespace spotivy
 
         }
 
-        public void AddPlaylist(/* numers,albums or/and songs */)
+        public void AddPlaylist(string name)
         {
 
         }
