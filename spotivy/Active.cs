@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace spotivy
+﻿namespace spotivy
 {
     internal class Active : SongCollection
     {
@@ -18,17 +12,28 @@ namespace spotivy
             string line;
             stop = false;
             Console.WriteLine();
-            while (!stop) {
+            while (!stop)
+            {
                 for (int i = 0; i <= _songList[playingSong].Length && !stop; i++)
                 {
                     line = (_songList[playingSong].Titel + " | ");
-                    for(int j = 0 ;j < _songList[playingSong].ArtistList.Count; j++)
+                    for (int j = 0; j < _songList[playingSong].ArtistList.Count; j++)
                     {
                         line += (_songList[playingSong].ArtistList[j].UserName + " | ");
                     }
-                    line += i/5+"/"+(_songList[playingSong].Length/5);
+                    line += i / 5 + "/" + (_songList[playingSong].Length / 5);
                     Write(line);
-                    Thread.Sleep( 200 );
+                    Thread.Sleep(200);
+                    if (_paused)
+                    {
+                        Write(line + " Paused");
+                        while (_paused)
+                        {
+                            
+                        }
+                    }
+                   
+
                 }
                 NextSong();
             }
@@ -61,6 +66,7 @@ namespace spotivy
             else
             {
                 _paused = true;
+             
             }
         }
 
@@ -81,15 +87,15 @@ namespace spotivy
             }
         }
 
-        public void SetSongList(List<Song> songList) 
+        public void SetSongList(List<Song> songList)
         {
             _songList = songList;
         }
 
         private static void Write(string input)
         {
-            Console.SetCursorPosition(0, Console.CursorTop -1);
-            Console.WriteLine(input + new string(' ' , Console.BufferWidth-input.Length));
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            Console.WriteLine(input + new string(' ', Console.BufferWidth - input.Length));
         }
     }
 }
