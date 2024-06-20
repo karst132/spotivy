@@ -44,7 +44,7 @@ namespace spotivy
             _length = length;
             _titel = titel;
             _artistList = artistList ?? new List<Artist>();
-            _genres = genres ?? new List<Genre>();
+            _genres = genres ?? new List<Genre>([(Genre)(-1)]);
         }
     }
 }
