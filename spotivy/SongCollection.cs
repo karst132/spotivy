@@ -20,6 +20,7 @@ namespace spotivy
 
         int playingSong = 0;
         bool stop = true;
+        bool resetSongTime = false;
         public async void Play()
         {
             string line;
@@ -29,6 +30,11 @@ namespace spotivy
             {
                 for (int i = 0; i <= _songList[playingSong].Length && !stop; i++)
                 {
+                    if (resetSongTime)
+                    {
+                        resetSongTime = false;
+                        i = 0;
+                    }
                     line = (_songList[playingSong].Titel + " | ");
                     if (_songList[playingSong].ArtistList.Count > 0)
                     {
@@ -66,10 +72,12 @@ namespace spotivy
             if (playingSong + 1 < SongList.Count)
             {
                 playingSong++;
+                resetSongTime = true;
             }
             else if (_repeat)
             {
                 playingSong = 0;
+                resetSongTime = true;
             }
             else
             {
