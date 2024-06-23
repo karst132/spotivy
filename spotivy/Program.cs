@@ -23,9 +23,7 @@ namespace spotivy
 
         async Task Run()
         {
-            List<Song> tempSongs = [new Song(50,"song1",artistList: new List<Artist>([new Artist(":3" +
-                "3" +
-                ".")])),new Song(40,"song2")];//for tessting purposes
+            List<Song> tempSongs = [new Song(50,"song1",artistList: new List<Artist>([new Artist(":3")])),new Song(40,"song2")];//for tessting purposes
 
             currentPlay = new SongCollection();
             currentPlay.SetSongList(tempSongs);
