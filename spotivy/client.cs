@@ -9,11 +9,13 @@ namespace spotivy
 {
     internal class Client
     {
-        List<User> users = new List<User>();
-        List<Album> albums = new List<Album>();
-        List<Artist> artists = new List<Artist>();
-        List<Song> songs = new List<Song>();
-
+        public Client(List<User> Users, List<Album> Albums, List<Artist> Artists, List<Song> Songs) {
+            List<User> _users = Users;
+            List<Album> _albums = Albums;
+            List<Artist> _artists = Artists;
+            List<Song> _songs = Songs;
+        }
+        
         Active currentPlay = new Active();
 
         string activity = "";
