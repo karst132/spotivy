@@ -36,12 +36,12 @@ namespace spotivy
                         i = 0;
                     }
                     line = (_songList[playingSong].Titel + " | ");
-                    if (_songList[playingSong].ArtistList.Count > 0)
+                    if (_songList[playingSong].ArtistNameList.Count > 0)
                     {
                         line += "artist(s) ";
-                        for (int j = 0; j < _songList[playingSong].ArtistList.Count; j++)
+                        for (int j = 0; j < _songList[playingSong].ArtistNameList.Count; j++)
                         {
-                            line += (_songList[playingSong].ArtistList[j].UserName + " ");
+                            line += (_songList[playingSong].ArtistNameList[j] + " ");
                         }
                         line += "| ";
                     }

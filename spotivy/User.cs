@@ -9,6 +9,8 @@ namespace spotivy
     internal class User
     {
         private List<User> _friendList = new List<User>();
+        private List<Playlist> _playlistList = new List<Playlist>();
+        public List<Playlist> Playlists { get { return _playlistList; } }
         private string _name;
         public string Name { get { return _name; } }
         public User(string name)
@@ -66,14 +68,17 @@ namespace spotivy
 
         }
 
-        public void AddPlaylist(string name)
+        public void AddPlaylist(string name = "new playlist")
         {
-
+            _playlistList.Add(new Playlist(name));
         }
 
         public void RemovePlaylist(Playlist playlist)
         {
-
+            if (_playlistList.Contains(playlist))
+            {
+                _playlistList.Remove(playlist);
+            }
         }
     }
 }

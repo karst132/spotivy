@@ -8,11 +8,12 @@ namespace spotivy
 {
     internal class Album : SongCollection
     {
-        private Artist _artist;
+        private string _artistName;
+        public string ArtistName { get { return _artistName; } }
 
-        public Album()
+        public Album(string artistName)
         {
-
+            _artistName = artistName;
         }
     }
 }

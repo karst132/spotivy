@@ -22,5 +22,43 @@ namespace spotivy
             _songList = SongList ?? new List<Song>();
             _albumList = AlbumList ?? new List<Album>();
         }
+
+        public void AddSongs(List<Song> songs)
+        {
+            List<Song> tempSongs = new List<Song>();
+            foreach (Song s in songs)
+            {
+                bool foundArtistName = false;
+                foreach (string artistName in s.ArtistNameList)
+                {
+                    if (artistName == _userName) 
+                    { 
+                        foundArtistName = true;
+                    }
+                    
+                }
+                if (foundArtistName)
+                {
+                    tempSongs.Add(s);
+                }
+            }
+
+            _songList.AddRange(tempSongs);
+        }
+
+        public void AddAlbums(List<Album> albums)
+        {
+            List<Album> tempAlbums = new List<Album>();
+            foreach (Album a in albums)
+            {
+                if(a.ArtistName == _userName)
+                {
+                    tempAlbums.Add(a);
+                }
+                
+                
+            }
+            _albumList.AddRange(tempAlbums);
+        }
     }
 }

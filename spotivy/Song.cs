@@ -33,8 +33,8 @@ namespace spotivy
         private int _length; //length in ticks 1 sec = 5 ticks
         public int Length { get { return _length; } }
 
-        private List<Artist> _artistList;
-        public List<Artist> ArtistList { get { return _artistList; } }
+        private List<string> _artistNameList = new List<string>();
+        public List<string> ArtistNameList { get { return _artistNameList; } }
 
         private string _titel;
         public string Titel { get { return _titel; } }
@@ -43,8 +43,12 @@ namespace spotivy
         {
             _length = length;
             _titel = titel;
-            _artistList = artistList ?? new List<Artist>();
             _genres = genres ?? new List<Genre>([(Genre)(-1)]);
+            List<Artist> tempArtistList = artistList ?? new List<Artist>();
+            foreach (Artist artist in tempArtistList)
+            {
+                _artistNameList.Add(artist.UserName);
+            }
         }
     }
 }

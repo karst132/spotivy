@@ -16,7 +16,7 @@ namespace spotivy
             List<Song> _songs = Songs;
         }
         
-        Active currentPlay = new Active();
+        SongCollection currentPlay = new SongCollection();
 
         string activity = "";
 

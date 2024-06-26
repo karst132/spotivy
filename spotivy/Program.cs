@@ -9,11 +9,38 @@ namespace spotivy
 
         
         static async Task Main(string[] args)
-        {
-            List<User> users = new List<User>();
-            List<Album> albums = new List<Album>();
-            List<Artist> artists = new List<Artist>();
+        {   
+            
+            List<Artist> artists = [
+                new ("artist1"),
+                new ("artist2"),
+                new ("artist3"),
+                new ("artist4")
+            ];
+
             List<Song> songs = new List<Song>();
+
+            for (int i = 0; i < artists.Count; i++)
+            {
+                songs.Add(new Song(25, "EpicSong"+i));//needs works
+            }
+            
+            List<Album> albums = new List<Album>();
+            List<User> users = [
+                new("test0"),
+                new("test1"),
+                new("test2"),
+                new("test3")
+            ];
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                users[i].AddPlaylist("epicPlayList"+i);
+                users[i].AddPlaylist("epicPlayList"+(i+4));
+            }
+            
+            
+
             Client client = new(users, albums, artists, songs);
 
             bool running = true;
