@@ -59,18 +59,6 @@ namespace spotivy
             activity = "stop";
             await Run();
 
-            // play playlist
-            // skip to next
-            // pause song
-            // stop playlist
-            // repeat playlist
-
-            // play album
-            // skip to next
-            // pause song
-            // stop album
-            // repeat album
-
             // search all
             // search songs
             // search users
@@ -85,6 +73,18 @@ namespace spotivy
             // view own playlists
             // friend user
             // unfriend user
+
+            // play playlist
+            // skip to next
+            // pause song
+            // stop playlist
+            // repeat playlist
+
+            // play album
+            // skip to next
+            // pause song
+            // stop album
+            // repeat album
 
             // view own playlists
             // create playlist (name "hello world")

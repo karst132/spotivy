@@ -19,13 +19,25 @@ namespace spotivy
             ];
 
             List<Song> songs = new List<Song>();
+            List<Album> albums = new List<Album>();
+
+            //the 3 for loop should be able to be changed in one
+            for (int i = 0; i < artists.Count; i++)
+            {
+                songs.Add(new Song(25, "EpicSong"+i, [artists[i]], [(Genre)0,(Genre)1]));
+                songs.Add(new Song(20, "EpicSong"+i+4, [artists[i]], [(Genre)3]));
+            }
 
             for (int i = 0; i < artists.Count; i++)
             {
-                songs.Add(new Song(25, "EpicSong"+i));//needs works
+                artists[i].AddSongs(songs);//because of how AddSongs is made it can only add songs if the artist is in it (still needs testing)
             }
-            
-            List<Album> albums = new List<Album>();
+
+            for (int i = 0; i < artists.Count; i++)
+            {
+                albums.Add(new Album(artists[i], "epicAlbum"+i,artists[i].SongList));
+            }
+
             List<User> users = [
                 new("test0"),
                 new("test1"),
@@ -39,8 +51,6 @@ namespace spotivy
                 users[i].AddPlaylist("epicPlayList"+(i+4));
             }
             
-            
-
             Client client = new(users, albums, artists, songs);
 
             bool running = true;

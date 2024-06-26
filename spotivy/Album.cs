@@ -11,9 +11,11 @@ namespace spotivy
         private string _artistName;
         public string ArtistName { get { return _artistName; } }
 
-        public Album(string artistName)
+        public Album(Artist artist, string name ,List<Song> songs)
         {
-            _artistName = artistName;
+            _artistName = artist.UserName;
+            _name = name;
+            _songList = songs;
         }
     }
 }
