@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using static spotivy.Song;
 
 namespace spotivy
 {
