@@ -4,54 +4,48 @@ namespace spotivy
 {
     internal class Program
     {
-        List<User> users = new List<User>();
-        List<Album> albums = new List<Album>();
-        List<Artist> artists = new List<Artist>();
-        List<Song> songs = new List<Song>();
-
-        Active currentPlay;
 
 
-        static async Task Main(string[] args) 
-        { 
-            Console.WriteLine("start");
-            Program program = new Program();
-            await program.Run();
-            Console.WriteLine("end");
-        }
-
-        async Task Run()
+        
+        static async Task Main(string[] args)
         {
-            List<Song> tempSongs = [new Song(50,"song1"),new Song(40,"song2")];//for tessting purposes
+            List<User> users = new List<User>();
+            List<Album> albums = new List<Album>();
+            List<Artist> artists = new List<Artist>();
+            List<Song> songs = new List<Song>();
+            Client client = new(users, albums, artists, songs);
 
-            currentPlay = new Active();
-            currentPlay.SetSongList(tempSongs);
+            bool running = true;
+            while (running)
+            {
+                Console.WriteLine("Run program by typing \"run\".");
+                Console.WriteLine("clear console by typing \"clear\".");
+                Console.WriteLine("Close the application by typing \"end\".");
+                string input;
+                input = Console.ReadLine().ToLower();
 
-            Thread t1 = new Thread(Method1)
-            {
-                Name = "Thread1"
-            };
-            Thread t2 = new Thread(Method2)
-            {
-                Name = "Thread2"
-            };
-            t1.Start();
-            t2.Start();
-            while (t1.IsAlive || t2.IsAlive)
-            {
-
+                switch (input)
+                {
+                    case "run":
+                        Console.WriteLine("Running Program...");
+                        Console.WriteLine();
+                        client.RunProgramAsync();
+                        Console.WriteLine("Done");
+                        Console.WriteLine();
+                        break;
+                    case "clear":
+                        Console.Clear();
+                        break;
+                    case "end":
+                        Console.WriteLine("stopping...");
+                        running = false;
+                        break;
+                    default:
+                        Console.WriteLine("Not a valid input.");
+                        Console.WriteLine();
+                        break;
+                }
             }
-        }
-
-        void Method1()
-        {
-            currentPlay.Play();
-        }
-        void Method2()
-        {
-            Thread.Sleep(3000);
-
-            //currentPlay.Stop();
         }
     }
 }
