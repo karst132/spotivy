@@ -10,7 +10,7 @@ namespace spotivy
 {
     internal class Client
     {
-
+        User mainUser = new("mainuser");
         List<User> _users;
         List<Album> _albums;
         List<Artist> _artists;
@@ -134,7 +134,11 @@ namespace spotivy
             // unfriend user
 
             // view own playlists
-            // create playlist (name "hello world")
+            // create playlist
+            mainUser.AddPlaylist("hello world");
+            mainUser.RemovePlaylist("hello world");
+
+
             // view own playlists
             // add songs
             // add another playlist to previously created one
@@ -209,7 +213,6 @@ namespace spotivy
 
         public void Search(string searchType, string searchTerm)
         {
-
             switch (searchType)
             {
                 case "all":

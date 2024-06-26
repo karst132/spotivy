@@ -7,11 +7,24 @@ namespace spotivy
     {
         static async Task Main(string[] args)
         {
-            List<User> users = [
+/*            List<User> users = [
                 new ("Lily"),
                 new ("Harry"),
                 new ("liam")
-                ]; ;
+                ]; ;*/
+
+            List<User> users = [
+                new("test0"),
+                new("test1"),
+                new("test2"),
+                new("test3")
+            ];
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                users[i].AddPlaylist("epicPlayList" + i);
+                users[i].AddPlaylist("epicPlayList" + (i + 4));
+            }
             List<Album> albums = [
 
                 ]; ;
