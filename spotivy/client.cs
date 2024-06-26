@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,14 +10,19 @@ namespace spotivy
 {
     internal class Client
     {
+
+        List<User> _users;
+        List<Album> _albums;
+        List<Artist> _artists;
+        List<Song> _songs;
         public Client(List<User> Users, List<Album> Albums, List<Artist> Artists, List<Song> Songs) {
-            List<User> _users = Users;
-            List<Album> _albums = Albums;
-            List<Artist> _artists = Artists;
-            List<Song> _songs = Songs;
+            _users = Users;
+            _albums = Albums;
+            _artists = Artists;
+            _songs = Songs;
         }
-        
-        Active currentPlay = new Active();
+
+        SongCollection currentPlay = new();
 
         string activity = "";
 
@@ -72,9 +78,44 @@ namespace spotivy
             // repeat album
 
             // search all
+            Console.WriteLine();
+            Console.WriteLine("search all");
+            Console.WriteLine("search term is empty");
+            Search("all", "");
+
+            Console.WriteLine();
+            Console.WriteLine("search term is 'te'");
+            Search("all", "te");
+
             // search songs
+            Console.WriteLine();
+            Console.WriteLine("search songs");
+            Console.WriteLine("search term is empty");
+            Search("song", "");
+
+            Console.WriteLine();
+            Console.WriteLine("search term is 'te'");
+            Search("song", "te");
+
             // search users
+            Console.WriteLine();
+            Console.WriteLine("search users");
+            Console.WriteLine("search term is empty");
+            Search("user", "");
+
+            Console.WriteLine();
+            Console.WriteLine("search term is 'li'");
+            Search("user", "li");
+
             // search albums
+            Console.WriteLine();
+            Console.WriteLine("search albums");
+            Console.WriteLine("search term is empty");
+            Search("album", "");
+
+            Console.WriteLine();
+            Console.WriteLine("search term is 'te'");
+            Search("album", "te");
 
             // view user
             // view user's playlists
@@ -157,6 +198,75 @@ namespace spotivy
 
                 break;
 
+            }
+        }
+
+        public void Search(string searchType, string searchTerm)
+        {
+
+            switch (searchType)
+            {
+                case "all":
+                    foreach (Song song in _songs)
+                    {
+                        string titel = song.Titel.ToLower();
+                        if (titel.Contains(searchTerm))
+                        {
+                            Console.WriteLine("Song: " + song.Titel);
+                        }
+                    }
+
+                    foreach (User user in _users)
+                    {
+                        string name = user.Name.ToLower();
+                        if (name.Contains(searchTerm))
+                        {
+                            Console.WriteLine("user: " + user.Name);
+                        }
+                    }
+
+                    foreach (Album album in _albums)
+                    {
+                        string Name = album.Name.ToLower();
+                        if (Name.Contains(searchTerm))
+                        {
+                            Console.WriteLine("album: " + album.Name);
+                        }
+                    }
+                    break;
+
+                case "song":
+                    foreach (Song song in _songs)
+                    {
+                        string titel = song.Titel.ToLower();
+                        if (titel.Contains(searchTerm))
+                        {
+                            Console.WriteLine(song.Titel);
+                        }
+                    }
+                    break;
+
+                case "user":
+                    foreach (User user in _users)
+                    {
+                        string name = user.Name.ToLower();
+                        if (name.Contains(searchTerm))
+                        {
+                            Console.WriteLine(user.Name);
+                        }
+                    }
+                    break;
+
+                case "album":
+                    foreach (Album album in _albums)
+                    {
+                        string Name = album.Name.ToLower();
+                        if (Name.Contains(searchTerm))
+                        {
+                            Console.WriteLine(album.Name);
+                        }
+                    }
+                    break;
             }
         }
     }
