@@ -117,8 +117,14 @@ namespace spotivy
             Console.WriteLine("search term is 'te'");
             Search("album", "te");
 
-            // view user
             // view user's playlists
+            Console.WriteLine();
+            Console.WriteLine("view user playlist");
+
+            User user = _users.FirstOrDefault();
+            Console.WriteLine("you are viewing user " + user.Name);
+            user.ViewAllPlaylistsOfUser();
+
             // play one of user's playlists
             // stop playlist
             // view own playlists

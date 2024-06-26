@@ -60,8 +60,11 @@ namespace spotivy
                 Console.WriteLine("");
             }
         }
+        public void ViewAllPlaylistsOfUser()
+        {
 
-        public void ViewPlaylistOfUser(Playlist playlist ,User user)
+        }
+        public void ViewPlaylistOfUser(Playlist playlist)
         {
 
         }
