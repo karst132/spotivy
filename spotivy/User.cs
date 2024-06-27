@@ -64,13 +64,25 @@ namespace spotivy
             }
         }
 
-        }
-        public void ViewPlaylistOfUser(Playlist playlist)
+        
+        public void ViewPlaylistOfUser(string playlistName)
         {
 
         }
 
-        public void AddPlaylist(string name = "new playlist")
+        public void ViewAllPlaylistsOfUser()
+        {
+            foreach (Playlist playlist in _playlistList)
+            {
+                Console.WriteLine(playlist.Name + " has " + playlist.SongList.Count + " songs ");
+            }
+            if(_playlistList.Count == 0)
+            {
+                Console.WriteLine("No playlists found for this user");
+            }
+        }
+
+        public void AddPlaylist(string playlistName = "new playlist")
         {
             if (_playlistList.Any(cus => cus.Name == playlistName) == false){
                 _playlistList.Add(new Playlist(playlistName));
@@ -80,13 +92,22 @@ namespace spotivy
 
         public void RemovePlaylist(string playlistName)
         {
-            foreach (Playlist playlist  in _playlistList)
+            try
             {
-                if(playlist.Name == playlistName)
+                foreach (Playlist playlist in _playlistList)
                 {
-                    _playlistList.Remove(playlist);
+                    if(playlist.Name == playlistName)
+                    {
+                        _playlistList.Remove(playlist);
+                        break;
+                    }
                 }
             }
+            catch
+            {
+                Console.WriteLine("fault?");
+            }
+
         }
     }
 }

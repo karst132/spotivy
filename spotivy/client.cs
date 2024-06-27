@@ -28,8 +28,25 @@ namespace spotivy
 
         public async Task RunProgramAsync()
         {
-            List<Song> tempSongs = [new Song(25, "song1")];
-            currentPlay.SetSongList(tempSongs);
+
+            // search songs
+            Console.WriteLine();
+            Console.WriteLine("search songs");
+            Console.WriteLine("search term is empty");
+            Console.WriteLine();
+            Search("song");
+
+            Console.WriteLine();
+            Console.WriteLine("search term is '1'");
+            Search("song", "1");
+
+            //currentPlay.SetSongList(_albums[0].SongList);
+
+            Console.WriteLine();
+            Console.WriteLine("Select song(s) to play");
+            Console.WriteLine("term is '1'");
+            SetActiveSong("song", "1");
+            Console.WriteLine();
 
             //play song
             Console.WriteLine("play song");
@@ -59,6 +76,7 @@ namespace spotivy
             activity = "skipAndRepeat";
             await Run();
 
+
             // stop song
             Console.WriteLine();
             Console.WriteLine("stop song");
@@ -72,18 +90,8 @@ namespace spotivy
             Search("all", "");
 
             Console.WriteLine();
-            Console.WriteLine("search term is 'te'");
-            Search("all", "te");
-
-            // search songs
-            Console.WriteLine();
-            Console.WriteLine("search songs");
-            Console.WriteLine("search term is empty");
-            Search("song", "");
-
-            Console.WriteLine();
-            Console.WriteLine("search term is 'te'");
-            Search("song", "te");
+            Console.WriteLine("search term is '1'");
+            Search("all", "1");
 
             // search users
             Console.WriteLine();
@@ -92,8 +100,8 @@ namespace spotivy
             Search("user", "");
 
             Console.WriteLine();
-            Console.WriteLine("search term is 'li'");
-            Search("user", "li");
+            Console.WriteLine("search term is '1'");
+            Search("user", "1");
 
             // search albums
             Console.WriteLine();
@@ -102,16 +110,16 @@ namespace spotivy
             Search("album", "");
 
             Console.WriteLine();
-            Console.WriteLine("search term is 'te'");
-            Search("album", "te");
+            Console.WriteLine("search term is '1'");
+            Search("album", "1");
 
             // view user's playlists
             Console.WriteLine();
             Console.WriteLine("view user playlist");
 
-            User user = _users.FirstOrDefault();
-            Console.WriteLine("you are viewing user " + user.Name);
-            user.ViewAllPlaylistsOfUser();
+            
+            Console.WriteLine("you are viewing user " + _users[0].Name);
+            _users[0].ViewAllPlaylistsOfUser();
 
             // play one of user's playlists
             // stop playlist
@@ -133,19 +141,25 @@ namespace spotivy
             // stop album
             // repeat album
 
-            // view own playlists
-            // create playlist
+            Console.WriteLine();
+            Console.WriteLine("main user create playlist named hello world");
             mainUser.AddPlaylist("hello world");
-            mainUser.RemovePlaylist("hello world");
+            Console.WriteLine("");
+            Console.WriteLine("Main user shows all playlists");
+            mainUser.ViewAllPlaylistsOfUser();
 
-
-            // view own playlists
             // add songs
             // add another playlist to previously created one
             // add album to previously created one
             // play playlist
             // stop playlist
-            // delete playlist
+
+            Console.WriteLine("");
+            Console.WriteLine("Main user removes previous created playlist");
+            mainUser.RemovePlaylist("hello world");
+            Console.WriteLine("");
+            Console.WriteLine("Main user shows all playlists");
+            mainUser.ViewAllPlaylistsOfUser();
         }
 
         public async Task Run()
@@ -211,7 +225,7 @@ namespace spotivy
             }
         }
 
-        public void Search(string searchType, string searchTerm)
+        public void Search(string searchType, string searchTerm = "")
         {
             switch (searchType)
             {
@@ -276,6 +290,44 @@ namespace spotivy
                         }
                     }
                     break;
+            }
+        }
+
+        public void SetActiveSong(string searchType, string searchTerm = "")
+        {
+            List<Song> tempSongList = new List<Song>();
+            switch (searchType)
+            {
+                case "song":
+                    foreach (Song song in _songs)
+                    {
+                        string titel = song.Titel.ToLower();
+                        if (titel.Contains(searchTerm))
+                        {
+                            Console.WriteLine(song.Titel);
+                            tempSongList.Add(song);
+                        }
+                    }
+                    break;
+
+                case "album":
+                    foreach (Album album in _albums)
+                    {
+                        string Name = album.Name.ToLower();
+                        if (Name.Contains(searchTerm))
+                        {
+                            Console.WriteLine(album.Name);
+                            foreach (Song albumSong in album.SongList) 
+                            { 
+                                tempSongList.Add(albumSong);
+                            }
+                            
+                        }
+                    }
+                    break;
+            }
+            if(tempSongList.Count != 0) {
+                currentPlay.SetSongList(tempSongList);
             }
         }
     }

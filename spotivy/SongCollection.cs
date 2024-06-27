@@ -8,7 +8,7 @@ namespace spotivy
 {
     internal class SongCollection
     {
-        protected List<Song> _songList;
+        protected List<Song> _songList = new List<Song>();
         public List<Song> SongList { get { return _songList; } }
         protected string _name;
         public string Name { get { return _name; } }
@@ -55,9 +55,20 @@ namespace spotivy
                         }
                         line += "| ";
                     }
-
-                    line += i / 5 + "/" + (_songList[playingSong].Length / 5);
+                    if(! _paused)
+                    {
+                        line += i / 5 + "/" + (_songList[playingSong].Length / 5);
+                    }
+                    else
+                    {
+                        line += i / 5 + "/" + (_songList[playingSong].Length / 5) + " | paused";
+                    }
                     Write(line);
+                    while (_paused)
+                    {
+
+                    }
+                    
                     Thread.Sleep(200);
                 }
                 NextSong();

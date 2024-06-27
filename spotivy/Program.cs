@@ -6,11 +6,6 @@ namespace spotivy
     internal class Program
     {
         static async Task Main(string[] args)
-        {
-
-
-        
-        static async Task Main(string[] args)
         {   
             
             List<Artist> artists = [
@@ -27,7 +22,7 @@ namespace spotivy
             for (int i = 0; i < artists.Count; i++)
             {
                 songs.Add(new Song(25, "EpicSong"+i, [artists[i]], [(Genre)0,(Genre)1]));
-                songs.Add(new Song(20, "EpicSong"+i+4, [artists[i]], [(Genre)3]));
+                songs.Add(new Song(20, "EpicSong"+(i+4), [artists[i]], [(Genre)3]));
             }
 
             for (int i = 0; i < artists.Count; i++)
@@ -67,6 +62,7 @@ namespace spotivy
                 Console.WriteLine("Close the application by typing \"end\".");
                 string input;
                 input = Console.ReadLine().ToLower();
+                
 
                 switch (input)
                 {
