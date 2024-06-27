@@ -5,15 +5,40 @@ namespace spotivy
 {
     internal class Program
     {
-
-
-        
         static async Task Main(string[] args)
         {
-            List<User> users = new List<User>();
-            List<Album> albums = new List<Album>();
-            List<Artist> artists = new List<Artist>();
-            List<Song> songs = new List<Song>();
+/*            List<User> users = [
+                new ("Lily"),
+                new ("Harry"),
+                new ("liam")
+                ]; ;*/
+
+            List<User> users = [
+                new("test0"),
+                new("test1"),
+                new("test2"),
+                new("test3")
+            ];
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                users[i].AddPlaylist("epicPlayList" + i);
+                users[i].AddPlaylist("epicPlayList" + (i + 4));
+            }
+            List<Album> albums = [
+
+                ]; ;
+            List<Artist> artists = [
+                ]; ;
+            List<Song> songs = [
+                new (20, "test1"),
+                new (20, "test2"),
+                new (20, "yay"),
+                new (20, "test3"),
+                new (20, "okie"),
+                new (20, "yapper")
+                ];
+
             Client client = new(users, albums, artists, songs);
 
             bool running = true;
@@ -31,6 +56,7 @@ namespace spotivy
                         Console.WriteLine("Running Program...");
                         Console.WriteLine();
                         client.RunProgramAsync();
+                        Console.WriteLine();
                         Console.WriteLine("Done");
                         Console.WriteLine();
                         break;

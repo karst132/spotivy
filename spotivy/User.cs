@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace spotivy
 {
     internal class User
     {
         private List<User> _friendList = new List<User>();
+        private List<Playlist> _playlistList = new List<Playlist>();
+        public List<Playlist> Playlists { get { return _playlistList; } }
         private string _name;
         public string Name { get { return _name; } }
         public User(string name)
@@ -60,20 +63,32 @@ namespace spotivy
                 Console.WriteLine("");
             }
         }
+        public void ViewAllPlaylistsOfUser()
+        {
 
-        public void ViewPlaylistOfUser(Playlist playlist ,User user)
+        }
+        public void ViewPlaylistOfUser(Playlist playlist)
         {
 
         }
 
-        public void AddPlaylist(string name)
+        public void AddPlaylist(string playlistName)
         {
-
+            if (_playlistList.Any(cus => cus.Name == playlistName) == false){
+                _playlistList.Add(new Playlist(playlistName));
+            }
+            
         }
 
-        public void RemovePlaylist(Playlist playlist)
+        public void RemovePlaylist(string playlistName)
         {
-
+            foreach (Playlist playlist  in _playlistList)
+            {
+                if(playlist.Name == playlistName)
+                {
+                    _playlistList.Remove(playlist);
+                }
+            }
         }
     }
 }

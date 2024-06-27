@@ -8,7 +8,7 @@ namespace spotivy
 {
     internal class Playlist : SongCollection
     {
-        public Playlist(String tempName = "New playlist")
+        public Playlist(string tempName = "New playlist")
         {
             _name = tempName;
         }
