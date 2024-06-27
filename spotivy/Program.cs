@@ -5,6 +5,8 @@ namespace spotivy
 {
     internal class Program
     {
+        static async Task Main(string[] args)
+        {
 
 
         
@@ -72,6 +74,7 @@ namespace spotivy
                         Console.WriteLine("Running Program...");
                         Console.WriteLine();
                         client.RunProgramAsync();
+                        Console.WriteLine();
                         Console.WriteLine("Done");
                         Console.WriteLine();
                         break;

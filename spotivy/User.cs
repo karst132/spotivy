@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace spotivy
 {
@@ -63,21 +64,28 @@ namespace spotivy
             }
         }
 
-        public void ViewPlaylistOfUser(Playlist playlist ,User user)
+        }
+        public void ViewPlaylistOfUser(Playlist playlist)
         {
 
         }
 
         public void AddPlaylist(string name = "new playlist")
         {
-            _playlistList.Add(new Playlist(name));
+            if (_playlistList.Any(cus => cus.Name == playlistName) == false){
+                _playlistList.Add(new Playlist(playlistName));
+            }
+            
         }
 
-        public void RemovePlaylist(Playlist playlist)
+        public void RemovePlaylist(string playlistName)
         {
-            if (_playlistList.Contains(playlist))
+            foreach (Playlist playlist  in _playlistList)
             {
-                _playlistList.Remove(playlist);
+                if(playlist.Name == playlistName)
+                {
+                    _playlistList.Remove(playlist);
+                }
             }
         }
     }
