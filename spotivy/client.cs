@@ -24,100 +24,11 @@ namespace spotivy
 
         SongCollection currentPlay = new();
 
-        string activity = "";
-
-        public async Task RunProgramAsync()
+        /*public async Task RunProgramAsync()
         {
-
-            // search songs
-            Console.WriteLine();
-            Console.WriteLine("search songs");
-            Console.WriteLine("search term is empty");
-            Console.WriteLine();
-            Search("song");
-
-            Console.WriteLine();
-            Console.WriteLine("search term is '1'");
-            Search("song", "1");
-
-            //currentPlay.SetSongList(_albums[0].SongList);
-
-            Console.WriteLine();
-            Console.WriteLine("Select song(s) to play");
-            Console.WriteLine("term is '1'");
-            SetActiveSong("song", "1");
-            Console.WriteLine();
-
-            //play song
-            Console.WriteLine("play song");
-            await Run();
-
-            //pause and start
-            Console.WriteLine();
-            Console.WriteLine("pause and start");
-            activity = "pause";
-            await Run();
-
-            // repeat song
-            Console.WriteLine();
-            Console.WriteLine("repeat song");
-            activity = "repeat";
-            await Run();
-
-            // skip song
-            Console.WriteLine();
-            Console.WriteLine("skip song");
-            activity = "skip";
-            await Run();
-
-            // skip while repeat song
-            Console.WriteLine();
-            Console.WriteLine("skip song while repeat");
-            activity = "skipAndRepeat";
-            await Run();
-
-
-            // stop song
-            Console.WriteLine();
-            Console.WriteLine("stop song");
-            activity = "stop";
-            await Run();
-
-            // search all
-            Console.WriteLine();
-            Console.WriteLine("search all");
-            Console.WriteLine("search term is empty");
-            Search("all", "");
-
-            Console.WriteLine();
-            Console.WriteLine("search term is '1'");
-            Search("all", "1");
-
-            // search users
-            Console.WriteLine();
-            Console.WriteLine("search users");
-            Console.WriteLine("search term is empty");
-            Search("user", "");
-
-            Console.WriteLine();
-            Console.WriteLine("search term is '1'");
-            Search("user", "1");
-
-            // search albums
-            Console.WriteLine();
-            Console.WriteLine("search albums");
-            Console.WriteLine("search term is empty");
-            Search("album", "");
-
-            Console.WriteLine();
-            Console.WriteLine("search term is '1'");
-            Search("album", "1");
-
             // view user's playlists
             Console.WriteLine();
             Console.WriteLine("view user playlist");
-
-            
             Console.WriteLine("you are viewing user " + _users[0].Name);
             _users[0].ViewAllPlaylistsOfUser();
 
@@ -160,69 +71,184 @@ namespace spotivy
             Console.WriteLine("");
             Console.WriteLine("Main user shows all playlists");
             mainUser.ViewAllPlaylistsOfUser();
+        }*/
+
+        //Cases that use a Thread use a while loop to stop it from continuing in the code
+        public async Task Case1() //als gebruiker wil ik alle songs kunnen zien songs
+        {
+            Search("song");
         }
 
-        public async Task Run()
+        public async Task Case2() //als gebruiker wil ik songs kunnen zoeken
         {
-            Thread t1 = new Thread(Method1)
+            Search("song", "1");
+        }
+
+        public async Task Case3() //als gebruiker wil ik nummers kunnen afspellen 
+        {
+            SetActiveSong("song", "0");
+            Thread t1 = new Thread(Play)
             {
                 Name = "Thread1"
             };
-            Thread t2 = new Thread(Method2)
+            t1.Start();
+            while (t1.IsAlive) { }
+        }
+
+        public async Task Case4() //pause and play
+        {
+            SetActiveSong("song", "0");
+            Thread t1 = new Thread(Play)
+            {
+                Name = "Thread1"
+            };
+            Thread t2 = new Thread(PauseAndPlay)
             {
                 Name = "Thread2"
             };
             t1.Start();
             t2.Start();
-            while (t1.IsAlive || t2.IsAlive)
-            {
-
-            }
+            while (t1.IsAlive || t2.IsAlive) { }
         }
 
-        void Method1()
+        public async Task Case5() //reapeat
+        {
+            SetActiveSong("song", "0");
+            currentPlay.Repeat();
+            Thread t1 = new Thread(Play)
+            {
+                Name = "Thread1"
+            };
+            Thread t2 = new Thread(StopMediumTime)
+            {
+                Name = "Thread1"
+            };
+            t1.Start();
+            t2.Start();
+            while (t1.IsAlive || t2.IsAlive) { }
+            currentPlay.Repeat();
+        }
+
+        public async Task Case6() //skip
+        {
+            SetActiveSong("song", "0");
+            Thread t1 = new Thread(Play)
+            {
+                Name = "Thread1"
+            };
+            Thread t2 = new Thread(Skip)
+            {
+                Name = "Thread1"
+            };
+            t1.Start();
+            t2.Start();
+            while (t1.IsAlive || t2.IsAlive) { }
+        }
+
+        public async Task Case7() //skip and reapeat
+        {
+            SetActiveSong("song", "0");
+            currentPlay.Repeat();
+            Thread t1 = new Thread(Play)
+            {
+                Name = "Thread1"
+            };
+            Thread t2 = new Thread(Skip)
+            {
+                Name = "Thread1"
+            };
+            Thread t3 = new Thread(StopMediumTime)
+            {
+                Name = "Thread1"
+            };
+            t1.Start();
+            t2.Start();
+            t3.Start();
+            while (t1.IsAlive || t2.IsAlive || t3.IsAlive) { }
+            currentPlay.Repeat();
+        }
+
+        public async Task Case8() //stop
+        {
+            SetActiveSong("song", "0");
+            Thread t1 = new Thread(Play)
+            {
+                Name = "Thread1"
+            };
+            Thread t2 = new Thread(StopShortTime)
+            {
+                Name = "Thread1"
+            };
+            t1.Start();
+            t2.Start();
+            while (t1.IsAlive || t2.IsAlive) { }
+        }
+
+        public async Task Case9() //shows all in client
+        {
+            Search("all", "");
+        }
+
+        public async Task Case10() //shearches in all of client
+        {
+            Search("all", "1");
+        }
+        
+        public async Task Case11() //shows all users
+        {
+            Search("user", "");
+        }
+
+        public async Task Case12() //searches user in client
+        {
+            Search("user", "1");
+        }
+
+        public async Task case13() //shows all albums
+        {
+            Search("album", "");
+        }
+
+        public async Task case14() //searches album in client
+        {
+            Search("album", "1");
+        }
+
+        void Play()
         {
             currentPlay.Play();
         }
-        void Method2()
+
+        void PauseAndPlay()
         {
-            switch (activity){
-                case "pause":
-                    Thread.Sleep(3000);
-                    currentPlay.Pause();
-                    Thread.Sleep(3000);
-                    currentPlay.Pause();
-                    break;
+            Thread.Sleep(3000);
+            currentPlay.Pause();
+            Thread.Sleep(3000);
+            currentPlay.Pause();
+        }
 
-                case "repeat":
-                    currentPlay.Repeat();
-                    Thread.Sleep(6000);
-                    currentPlay.Repeat();
-                    break;
+        void StopShortTime()
+        {
+            Thread.Sleep(3000);
+            currentPlay.Stop();
+        }
 
-                case "skip":
-                    Thread.Sleep(3000);
-                    currentPlay.NextSong();
-                    break;
+        void StopMediumTime()
+        {
+            Thread.Sleep(8000);
+            currentPlay.Stop();
+        }
 
-                case "skipAndRepeat":
-                    currentPlay.Repeat();
-                    Thread.Sleep(3000);
-                    currentPlay.NextSong();
-                    Thread.Sleep(3000);
-                    currentPlay.Repeat();
-                    break;
+        void StopLongTime()
+        {
+            Thread.Sleep(16000);
+            currentPlay.Stop();
+        }
 
-                case "stop":
-                    Thread.Sleep(3000);
-                    currentPlay.Stop();
-                    break;
-
-                default:
-
-                break;
-
-            }
+        void Skip()
+        {
+            Thread.Sleep(3000);
+            currentPlay.NextSong();
         }
 
         public void Search(string searchType, string searchTerm = "")

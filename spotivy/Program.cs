@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using static spotivy.Song;
 
 namespace spotivy
@@ -54,39 +55,37 @@ namespace spotivy
             
             Client client = new(users, albums, artists, songs);
 
-            bool running = true;
-            while (running)
-            {
-                Console.WriteLine("Run program by typing \"run\".");
-                Console.WriteLine("clear console by typing \"clear\".");
-                Console.WriteLine("Close the application by typing \"end\".");
-                string input;
-                input = Console.ReadLine().ToLower();
-                
-
-                switch (input)
-                {
-                    case "run":
-                        Console.WriteLine("Running Program...");
-                        Console.WriteLine();
-                        client.RunProgramAsync();
-                        Console.WriteLine();
-                        Console.WriteLine("Done");
-                        Console.WriteLine();
-                        break;
-                    case "clear":
-                        Console.Clear();
-                        break;
-                    case "end":
-                        Console.WriteLine("stopping...");
-                        running = false;
-                        break;
-                    default:
-                        Console.WriteLine("Not a valid input.");
-                        Console.WriteLine();
-                        break;
-                }
-            }
+            Console.WriteLine("start");
+            Console.WriteLine();
+            client.Case1();//show all songs
+            Console.WriteLine();
+            client.Case2();//search song term "1"
+            Console.WriteLine();
+            client.Case3(); //play
+            Console.WriteLine();
+            client.Case4(); //play and pause
+            Console.WriteLine();
+            client.Case5(); //reapeat
+            Console.WriteLine();
+            client.Case6(); //skip
+            Console.WriteLine();
+            client.Case7(); //skip and reapeat
+            Console.WriteLine();
+            client.Case8(); //stop
+            Console.WriteLine();
+            client.Case9(); //show all songs albums users (not artists currently)
+            Console.WriteLine();
+            client.Case10(); //searches in all songs albums users (not artists currently)
+            Console.WriteLine();
+            client.Case11(); //shows all users
+            Console.WriteLine();
+            client.Case12(); //searches user term "1"
+            Console.WriteLine();
+            client.case13(); //shows all albums
+            Console.WriteLine();
+            client.case14(); //searches album in cient
+            Console.WriteLine();
+            Console.WriteLine("end");
         }
     }
 }

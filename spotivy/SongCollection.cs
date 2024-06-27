@@ -125,7 +125,7 @@ namespace spotivy
             }
         }
 
-        public void SetSongList(List<Song> songList)
+        public void SetSongList(List<Song> songList)//chek how it can't be used by children
         {
             _songList = songList;
         }
