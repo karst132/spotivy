@@ -49,6 +49,10 @@ namespace spotivy
             {
                 users[i].AddPlaylist("epicPlayList"+i);
                 users[i].AddPlaylist("epicPlayList"+(i+4));
+                for(int j = 0;j < users[i].Playlists.Count; j++)
+                {
+                    users[i].Playlists[j].AddSongs(songs); 
+                }
             }
             
             Client client = new(users, albums, artists, songs);
