@@ -58,9 +58,9 @@ namespace spotivy
             {
                 foreach (User user in _friendList)
                 {
-                    Console.WriteLine(user.Name);
+                    Console.Write(user.Name + " | ");
                 }
-                Console.WriteLine("");
+                Console.WriteLine();
             }
         }
 

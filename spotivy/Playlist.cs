@@ -11,6 +11,7 @@ namespace spotivy
         public Playlist(string tempName = "New playlist")
         {
             _name = tempName;
+            DisableSetSongList();
         }
 
         public void ChangeName(string tempName)

@@ -16,6 +16,7 @@ namespace spotivy
             _artistName = artist.UserName;
             _name = name;
             _songList = songs;
+            DisableSetSongList();
         }
     }
 }

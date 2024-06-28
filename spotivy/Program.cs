@@ -85,6 +85,32 @@ namespace spotivy
             Console.WriteLine();
             client.Case14(); //searches album in cient
             Console.WriteLine();
+            client.Case15();
+            Console.WriteLine();
+            client.Case16();
+            Console.WriteLine(); 
+            client.Case17();
+            Console.WriteLine();
+            client.Case18();
+            Console.WriteLine(); 
+            client.Case19();
+            Console.WriteLine(); 
+            client.Case20();
+            Console.WriteLine(); 
+            client.Case21();
+            Console.WriteLine(); 
+            client.Case22();
+            Console.WriteLine(); 
+            client.Case23();
+            Console.WriteLine(); 
+            client.Case24();
+            Console.WriteLine(); 
+            client.Case25();
+            Console.WriteLine(); 
+            client.Case26();
+            Console.WriteLine(); 
+            client.Case27();
+            Console.WriteLine();
             Console.WriteLine("end");
         }
     }

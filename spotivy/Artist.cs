@@ -16,7 +16,7 @@ namespace spotivy
         private List<Album> _albumList;
         public List<Album> AlbumList { get { return _albumList; } }
 
-        public Artist(string UserName, List<Song> SongList = null, List<Album> AlbumList = null)
+        public Artist(string UserName, List<Song>? SongList = null, List<Album>? AlbumList = null)
         {
             _userName = UserName;
             _songList = SongList ?? new List<Song>();

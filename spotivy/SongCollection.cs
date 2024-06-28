@@ -12,15 +12,15 @@ namespace spotivy
         public List<Song> SongList { get { return _songList; } }
         protected string _name;
         public string Name { get { return _name; } }
-
+        private bool setSongListEnabled = true;
         //following code used to activate and play the song
 
         private bool _repeat = false;
         private bool _paused = false;
 
-        int playingSong = 0;
-        bool stop = true;
-        bool resetSongTime = false;
+        private int playingSong = 0;
+        private bool stop = true;
+        private bool resetSongTime = false;
         public async void Play()
         {
             string line;
@@ -127,13 +127,21 @@ namespace spotivy
 
         public void SetSongList(List<Song> songList)//chek how it can't be used by children
         {
-            _songList = songList;
+            if (setSongListEnabled)
+            {
+                _songList = songList;
+            }
         }
 
         private static void Write(string input)//used to (over)write on the same line
         {
             Console.SetCursorPosition(0, Console.CursorTop - 1);
             Console.WriteLine(input + new string(' ', Console.BufferWidth - input.Length));
+        }
+
+        protected void DisableSetSongList()
+        {
+            setSongListEnabled = false;
         }
     }
 }

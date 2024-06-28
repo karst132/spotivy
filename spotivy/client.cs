@@ -41,24 +41,8 @@ namespace spotivy
             // stop playlist
             // repeat playlist
 
-            // play album
-            // skip to next
-            // pause song
-            // stop album
-            // repeat album
-
-            // add songs
             // add another playlist to previously created one
             // add album to previously created one
-            // play playlist
-            // stop playlist
-
-            Console.WriteLine("");
-            Console.WriteLine("Main user removes previous created playlist");
-            mainUser.RemovePlaylist("hello world");
-            Console.WriteLine("");
-            Console.WriteLine("Main user shows all playlists");
-            mainUser.ViewAllPlaylistsOfUser();
         }*/
 
         //Cases that use a Thread use a while loop to stop it from continuing in the code
@@ -289,6 +273,12 @@ namespace spotivy
         public async Task Case27()
         {
             SetActiveSong("album", "0");
+            Thread t1 = new Thread(Play)
+            {
+                Name = "Thread1"
+            };
+            t1.Start();
+            while (t1.IsAlive) { }
         }
 
         void Play()
@@ -408,7 +398,6 @@ namespace spotivy
                         string titel = song.Titel.ToLower();
                         if (titel.Contains(searchTerm))
                         {
-                            Console.WriteLine(song.Titel);
                             tempSongList.Add(song);
                         }
                     }
@@ -420,7 +409,6 @@ namespace spotivy
                         string Name = album.Name.ToLower();
                         if (Name.Contains(searchTerm))
                         {
-                            Console.WriteLine(album.Name);
                             foreach (Song albumSong in album.SongList) 
                             { 
                                 tempSongList.Add(albumSong);
