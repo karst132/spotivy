@@ -81,9 +81,9 @@ namespace spotivy
             Console.WriteLine();
             client.Case12(); //searches user term "1"
             Console.WriteLine();
-            client.case13(); //shows all albums
+            client.Case13(); //shows all albums
             Console.WriteLine();
-            client.case14(); //searches album in cient
+            client.Case14(); //searches album in cient
             Console.WriteLine();
             Console.WriteLine("end");
         }

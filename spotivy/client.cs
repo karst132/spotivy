@@ -10,36 +10,31 @@ namespace spotivy
 {
     internal class Client
     {
-        User mainUser = new("mainuser");
+        User _mainUser;
         List<User> _users;
         List<Album> _albums;
         List<Artist> _artists;
         List<Song> _songs;
-        public Client(List<User> Users, List<Album> Albums, List<Artist> Artists, List<Song> Songs) {
+        public Client(List<User> Users, List<Album> Albums, List<Artist> Artists, List<Song> Songs, User? MainUser = null) {
             _users = Users;
             _albums = Albums;
             _artists = Artists;
             _songs = Songs;
+            if (MainUser == null)
+            {
+                _mainUser = new("main user");
+            }
+            else
+            {
+                _mainUser = MainUser;
+            }
+            
         }
 
         SongCollection currentPlay = new();
 
         /*public async Task RunProgramAsync()
         {
-            // view user's playlists
-            Console.WriteLine();
-            Console.WriteLine("view user playlist");
-            Console.WriteLine("you are viewing user " + _users[0].Name);
-            _users[0].ViewAllPlaylistsOfUser();
-
-            // play one of user's playlists
-            // stop playlist
-            // view own playlists
-            // copy playlist
-            // view own playlists
-            // friend user
-            // unfriend user
-
             // play playlist
             // skip to next
             // pause song
@@ -51,13 +46,6 @@ namespace spotivy
             // pause song
             // stop album
             // repeat album
-
-            Console.WriteLine();
-            Console.WriteLine("main user create playlist named hello world");
-            mainUser.AddPlaylist("hello world");
-            Console.WriteLine("");
-            Console.WriteLine("Main user shows all playlists");
-            mainUser.ViewAllPlaylistsOfUser();
 
             // add songs
             // add another playlist to previously created one
@@ -204,20 +192,110 @@ namespace spotivy
             Search("user", "1");
         }
 
-        public async Task case13() //shows all albums
+        public async Task Case13() //shows all albums
         {
             Search("album", "");
         }
 
-        public async Task case14() //searches album in client
+        public async Task Case14() //searches album in client
         {
             Search("album", "1");
+        }
+
+        public async Task Case15()//make playlist
+        {
+            _mainUser.AddPlaylist("hello world");
+        }
+
+        public async Task Case16()//show all playlist of user
+        {
+            _mainUser.ViewAllPlaylistsOfUser();
+        }
+
+        public async Task Case17()//add song to playlist
+        {
+            if(_mainUser.Playlists.Count > 0/*target playlist*/)
+            {
+                _mainUser.Playlists[0/*target playlist*/].AddSongs([_songs[0]]);
+            }
+        }
+
+        public async Task Case18()//play playlist
+        {
+            if (_mainUser.Playlists.Count > 0/*target playlist*/)
+            {
+                currentPlay.SetSongList(_mainUser.Playlists[0/*target playlist*/].SongList);
+                Thread t1 = new Thread(Play)
+                {
+                    Name = "Thread1"
+                };
+                t1.Start();
+                while (t1.IsAlive) { }
+            }
+        }
+
+        public async Task Case19()//change name playlist
+        {
+            if (_mainUser.Playlists.Count > 0/*target playlist*/)
+            {
+                _mainUser.Playlists[0/*target playlist*/].ChangeName("my playlist");
+            }
+        }
+
+        public async Task Case20()//remove song of playlist
+        {
+            if (_mainUser.Playlists.Count > 0/*target playlist*/)
+            {
+                _mainUser.Playlists[0/*target playlist*/].RemoveSongBySong(_songs[0]);
+            }
+        }
+
+        public async Task Case21()//remove playlist
+        {
+            if (_mainUser.Playlists.Count > 0/*target playlist*/)
+            {
+                _mainUser.RemovePlaylist("my playlist");
+            }
+        }
+
+        public async Task Case22()//copy playlist
+        {
+            _mainUser.CopyPlaylistsAndAlbum(_users[0].Playlists[0]);
+        }
+
+        public async Task Case23()//view a singel playlist (with more deatail)
+        {
+            if (_mainUser.Playlists.Count > 0/*target playlist*/)
+            {
+                _mainUser.ViewPlaylistOfUser(_mainUser.Playlists[0].Name);
+            }
+        }
+
+        public async Task Case24()
+        {
+            _mainUser.AddFriend(_users[0]);
+        }
+
+        public async Task Case25()
+        {
+            _mainUser.ViewFriendsList();
+        }
+
+        public async Task Case26()
+        {
+            _mainUser.RemoveFriend(_users[0]);
+        }
+        
+        public async Task Case27()
+        {
+            SetActiveSong("album", "0");
         }
 
         void Play()
         {
             currentPlay.Play();
         }
+        
 
         void PauseAndPlay()
         {
@@ -251,7 +329,7 @@ namespace spotivy
             currentPlay.NextSong();
         }
 
-        public void Search(string searchType, string searchTerm = "")
+        public void Search(string searchType, string searchTerm = "all")
         {
             switch (searchType)
             {
@@ -319,7 +397,7 @@ namespace spotivy
             }
         }
 
-        public void SetActiveSong(string searchType, string searchTerm = "")
+        public void SetActiveSong(string searchType = "song", string searchTerm = "")
         {
             List<Song> tempSongList = new List<Song>();
             switch (searchType)

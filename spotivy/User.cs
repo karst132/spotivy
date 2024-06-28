@@ -67,7 +67,24 @@ namespace spotivy
         
         public void ViewPlaylistOfUser(string playlistName)
         {
-
+            foreach (Playlist playlist in _playlistList)
+            {
+                if (playlist.Name == playlistName)
+                {
+                    Console.WriteLine(playlist.Name + " has " + playlist.SongList.Count + " songs ");
+                    Console.Write("these songs are: ");
+                    foreach(Song song in playlist.SongList)
+                    {
+                        Console.Write(song.Titel + " | ");
+                    }
+                    Console.WriteLine();
+                    return;
+                }
+            }
+            if (_playlistList.Count == 0)
+            {
+                Console.WriteLine("No playlists found for this user");
+            }
         }
 
         public void ViewAllPlaylistsOfUser()
@@ -107,7 +124,20 @@ namespace spotivy
             {
                 Console.WriteLine("fault?");
             }
+        }
 
+        public void CopyPlaylistsAndAlbum(SongCollection playlistToCopy)
+        {
+            Playlist tempPlaylist = new(playlistToCopy.Name);
+            if (_playlistList.Any(cus => cus.Name == tempPlaylist.Name) == false)
+            {
+                tempPlaylist.AddSongs(playlistToCopy.SongList);
+                _playlistList.Add(tempPlaylist);
+            }
+            else
+            {
+                Console.WriteLine(tempPlaylist.Name + " is already in use by another playlist of yours");
+            }
         }
     }
 }
